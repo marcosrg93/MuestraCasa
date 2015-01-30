@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
             System.out.print("fallo "+col1);
             String col2 = cursor.getString(2);
             String col3 = cursor.getString(3);
-            //String col4 = cursor.getInt(4)+"";
+
             System.out.print("fallo "+col1+col2+col3);
             tv.append (col1+" "+col2+" "+col3+" "+"\n");
             cursor.moveToNext();
@@ -57,38 +57,12 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
-
     public void insert (View v) {
         Uri uri = Contrato.TablaInmuebles.CONTENT_URI;
         ContentValues valores = new ContentValues();
-        valores.put(Contrato.TablaInmuebles.DIRECCION, "MARRuecos");
-        valores.put(Contrato.TablaInmuebles.TIPO, "casa");
-        valores.put(Contrato.TablaInmuebles.PRECIO, "11011993");
+        valores.put(Contrato.TablaInmuebles.DIRECCION, "Prueba");
+        valores.put(Contrato.TablaInmuebles.TIPO, "MuestraCasa");
+        valores.put(Contrato.TablaInmuebles.PRECIO, "500000");
         Uri u = getContentResolver().insert(uri, valores);
         tv.append(u.toString() + "\n");
 
@@ -100,18 +74,18 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
             String col1 = cursor.getString(1);
             String col2 = cursor.getString(2);
             String col3 = cursor.getString(3);
-            String col4 = cursor.getString(4);
 
-            tv.append(col1 + " " + col2 + " " + col3 + " " + col4 + "\n");
+            tv.append(col1 + " " + col2 + " " + col3 + " "  + "\n");
             cursor.moveToNext();
         }
     }
 
     public void  update (View v){
+
         Uri uri = Contrato.TablaInmuebles.CONTENT_URI;
         ContentValues valores = new ContentValues();
-        valores.put(Contrato.TablaInmuebles.DIRECCION, "Juan");
-        valores.put(Contrato.TablaInmuebles.TIPO, "89");
+        valores.put(Contrato.TablaInmuebles.DIRECCION, "Prueba");
+        valores.put(Contrato.TablaInmuebles.TIPO, "Actualizacion");
         String where = Contrato.TablaInmuebles.PRECIO+ " = ?";
         String[] args = new String[]{""};
         int i = getContentResolver().update(uri, valores, where,args);
@@ -119,14 +93,8 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
     }
 
 
-    /*public void deleteUno (View v){
-        Uri uri = Contrato.TablaPartido.CONTENT_URI;
-        String where = Contrato.TablaPartido._ID+ " > ?";
-        String args =
-    }*/
-
     public void delete (View v){
-        Uri uri= Uri.withAppendedPath(Contrato.TablaInmuebles.CONTENT_URI, "2");
+        Uri uri= Uri.withAppendedPath(Contrato.TablaInmuebles.CONTENT_URI, "5" );
         int i = getContentResolver().delete(uri,null,null);
         tv.append(i + " registros eliminados\n");
     }

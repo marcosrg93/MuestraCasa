@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">MuestraCasa</string>
+    <string name="btinsert">Insertar</string>
 
 </resources>
